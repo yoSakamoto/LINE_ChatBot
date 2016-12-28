@@ -26,25 +26,25 @@ app.post('/webhook', function(req, res, next){
                     console.log(response);
                 }
             );
-//            var headers = {
-//                'Content-Type': 'application/json',
-//                'Authorization': 'Bearer ' + LINE_CHANNEL_ACCESS_TOKEN
-//            }
-//            var body = {
-//                replyToken: event.replyToken,
-//                messages: [{
-//                    type: 'text',
-//                    text: 'ちょっと待ってね！'
-//                }]
-//            }
-//            var url = 'https://api.line.me/v2/bot/message/reply';
-//            request({
-//                url: url,
-//                method: 'POST',
-//                headers: headers,
-//                body: body,
-//                json: true
-//            });
+            var headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + LINE_CHANNEL_ACCESS_TOKEN
+            }
+            var body = {
+                replyToken: event.replyToken,
+                messages: [{
+                    type: 'text',
+                    text: 'ちょっと待ってね！'
+                }]
+            }
+            var url = 'https://api.line.me/v2/bot/message/reply';
+            request({
+                url: url,
+                method: 'POST',
+                headers: headers,
+                body: body,
+                json: true
+            });
         }
     }
 });
