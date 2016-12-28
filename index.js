@@ -3,6 +3,7 @@ const LINE_CHANNEL_ACCESS_TOKEN = 'OFBEHm3kAobHWuf4AaSiKVUd8FjEvUQ/LC8setJXnuCT1
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
+var mecab = require('mecabaas-client');
 var app = express();
 app.use(bodyParser.json());
 
@@ -19,25 +20,31 @@ app.post('/webhook', function(req, res, next){
     res.status(200).end();
     for (var event of req.body.events){
         if (event.type == 'message' && event.message.text == 'パズドラ'){
-            var headers = {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + LINE_CHANNEL_ACCESS_TOKEN
-            }
-            var body = {
-                replyToken: event.replyToken,
-                messages: [{
-                    type: 'text',
-                    text: 'ちょっと待ってね！'
-                }]
-            }
-            var url = 'https://api.line.me/v2/bot/message/reply';
-            request({
-                url: url,
-                method: 'POST',
-                headers: headers,
-                body: body,
-                json: true
-            });
+            mecab.parse(event.message.text)
+            .then(
+                function(response) {
+                    console.log(response);
+                }
+            );
+//            var headers = {
+//                'Content-Type': 'application/json',
+//                'Authorization': 'Bearer ' + LINE_CHANNEL_ACCESS_TOKEN
+//            }
+//            var body = {
+//                replyToken: event.replyToken,
+//                messages: [{
+//                    type: 'text',
+//                    text: 'ちょっと待ってね！'
+//                }]
+//            }
+//            var url = 'https://api.line.me/v2/bot/message/reply';
+//            request({
+//                url: url,
+//                method: 'POST',
+//                headers: headers,
+//                body: body,
+//                json: true
+//            });
         }
     }
 });
