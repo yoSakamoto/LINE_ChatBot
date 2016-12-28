@@ -16,8 +16,26 @@ app.get('/', function (req, res, next) {
 app.post('/webhook', function (req, res, next) {
     res.status(200).end();
     for (var event of req.body.events) {
-        if (event.type == 'message') {
-            console.log(event.message);
+        if (event.type == 'message' && event.message.text == 'パズドラ') {
+            var headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer' + LINE_CHANNEL_ACCESS_TOKEN
+            }
+            var body = {
+                replyToken: event.replyToken,
+                message: [{
+                    type: 'text',
+                    text: 'ちょっと待ってー！'
+                }]
+            }
+            var url = 'https://api.line.me/v2/bot/message/reply';
+            request({
+                url: url,
+                method: 'POST',
+                headers: headers,
+                body: body,
+                json: true
+            });
         }
     }
 });
