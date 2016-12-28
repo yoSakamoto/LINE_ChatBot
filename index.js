@@ -1,5 +1,10 @@
+const LINE_CHANNEL_ACCES_TOKEN = OFBEHm3kAobHWuf4AaSiKVUd8FjEvUQ / LC8setJXnuCT1dWhjSp9k / jALlLiyoU4N7rIzww10iQvXNkNXL2 / SfOULPG6RNHjICzYRKWI + QGW1LHjdOAVl18zMBp4HhfxI9S32N / DmIo3 + KkbyH3ORQdB04t89 / 1 O / w1cDnyilFU = ;
+
+
+
 var express = require('express');
 var bodyParser = require('body-parser');
+var request = require('request');
 var app = express();
 
 app.use(bodyParser.json());
