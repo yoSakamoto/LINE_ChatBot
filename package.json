@@ -9,6 +9,8 @@
   "author": "Yo Sakamoto",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0"
-  }
+  },
+  "private": true
 }
