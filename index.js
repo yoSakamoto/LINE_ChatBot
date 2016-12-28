@@ -1,6 +1,5 @@
 const LINE_CHANNEL_ACCESS_TOKEN = 'OFBEHm3kAobHWuf4AaSiKVUd8FjEvUQ/LC8setJXnuCT1dWhjSp9k/jALlLiyoU4N7rIzww10iQvXNkNXL2/SfOULPG6RNHjICzYRKWI+QGW1LHjdOAVl18zMBp4HhfxI9S32N/DmIo3+KkbyH3ORQdB04t89/1O/w1cDnyilFU=';
 
-
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
@@ -19,7 +18,7 @@ app.get('/', function (req, res, next) {
 app.post('/webhook', function(req, res, next){
     res.status(200).end();
     for (var event of req.body.events){
-        if (event.type == 'message' && event.message.text == 'ハロー'){
+        if (event.type == 'message' && event.message.text == 'パズドラ'){
             var headers = {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + LINE_CHANNEL_ACCESS_TOKEN
@@ -28,7 +27,7 @@ app.post('/webhook', function(req, res, next){
                 replyToken: event.replyToken,
                 messages: [{
                     type: 'text',
-                    text: 'こんにちはー'
+                    text: 'ちょっと待ってね！'
                 }]
             }
             var url = 'https://api.line.me/v2/bot/message/reply';
